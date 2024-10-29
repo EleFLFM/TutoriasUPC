@@ -97,12 +97,12 @@ if (isset($_POST['enviar'])) {
     if ($conn->query($sql) === TRUE) {
         echo '<script>
                 alert("Se actualizaron los datos");
-                location.assign("Gestion.php");
+                location.assign("../admin/gestion_usuarios");
             </script>';
     } else {
         echo '<script>
                 alert("Error al actualizar los datos: ' . $conn->error . '");
-                location.assign("Gestion.php");
+                location.assign("../admin/gestion_usuarios");
             </script>';
     }
 } else {

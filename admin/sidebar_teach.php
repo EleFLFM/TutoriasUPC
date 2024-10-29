@@ -42,8 +42,11 @@ header("Location: ../login.html");
     <div class="dropdown-menu bg-transparent border-0 overflow-auto">
     <?php           
         // Conexión a la base de datos
-        include "../conexion.php";
-    
+        if (file_exists('../conexion.php')) {
+            include "../conexion.php";
+        } else {
+            die("Error al incluir el archivo de conexión.");
+        }
         // con la condición que no muestre cuando idcargo = 1 (admin)
         $consulta_usuario = "SELECT * FROM courses";
         $resultado = $conn->query($consulta_usuario);
