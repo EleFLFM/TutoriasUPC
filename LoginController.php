@@ -1,68 +1,94 @@
 <?php
 session_start();
 
-// Capturar los datos del formulario
-$usuario = $_POST['usuario'];
-$contraseña = $_POST['contraseña'];
-
 // Conexión a la base de datos
-include "conexion.php";
+require_once "conexion.php";
 
-// Consulta SQL para obtener el usuario
-$consulta = "SELECT * FROM usuarios WHERE usuario='$usuario'";
-$resultado = mysqli_query($conn, $consulta);
+// Capturar y sanitizar datos
+$usuario = isset($_POST['usuario']) ? mysqli_real_escape_string($conn, $_POST['usuario']) : '';
+$contraseña = isset($_POST['contraseña']) ? $_POST['contraseña'] : '';
+
+if (empty($usuario) || empty($contraseña)) {
+    mostrarError("Todos los campos son requeridos");
+    exit();
+}
+
+// Usar consultas preparadas para prevenir SQL Injection
+$consulta = "SELECT * FROM usuarios WHERE usuario = ?";
+$stmt = mysqli_prepare($conn, $consulta);
+mysqli_stmt_bind_param($stmt, "s", $usuario);
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
 
 // Verificar si la consulta se ejecutó correctamente
 if ($resultado) {
-    // Obtener la fila del usuario
     $fila = mysqli_fetch_assoc($resultado);
-
-    // Verificar si se encontró el usuario
+    
     if ($fila) {
-        // Verificar si el usuario está activo
+        // Debug - Comentar en producción
+        error_log("Usuario encontrado - ID Estado: " . $fila['id_estado']);
+        
+        // Verificar estado del usuario
         if ($fila['id_estado'] == 2) {
-            echo '<script>alert("No tienes permisos para acceder a esta página. Este usuario está inactivo.");
-            location.href = "login.html";</script>';
+            mostrarError("Usuario Inactivo", "No tienes permisos para acceder. Este usuario está inactivo.");
+            exit();
+        }
+        
+        // Verificar contraseña
+        if (password_verify($contraseña, $fila['contraseña'])) {
+            // Guardar datos en sesión
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['idcargo'] = $fila['idcargo'];
+            $_SESSION['id_estado'] = $fila['id_estado'];
+            
+            // Redirigir según el cargo
+            switch ($fila['idcargo']) {
+                case 1:
+                    header("Location: under/index_admin.php");
+                    break;
+                case 2:
+                    header("Location: under/index_student.php");
+                    break;
+                case 3:
+                    header("Location: under/index_teacher.php");
+                    break;
+                default:
+                    mostrarError("Error", "Tipo de usuario no válido");
+                    exit();
+            }
         } else {
-            // Hash de la contraseña desde la base de datos
-            $contraseña_hash = $fila['contraseña'];
-
-            // Verificar si la contraseña ingresada coincide con el hash
-            if (password_verify($contraseña, $contraseña_hash)) {
-                // Guardar sesión del usuario
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['idcargo'] = $fila['idcargo'];
-                $_SESSION['id_estado'] = $fila['id_estado'];
-
-                $idcargo = $_SESSION['idcargo'];
-
-                // Redirigir según el cargo del usuario
-                if ($idcargo == 1) {
-                    header("location: admin/home-admin.php");
-                } elseif ($idcargo == 2) {
-                    header("location:students/index_student.php ");
-                } elseif ($idcargo == 3) {
-                    header("location: admin/home_teach.php");
-                }
-            } 
-            echo $idcargo;
-            // else {
-            //     // Contraseña incorrecta
-            //     echo '<script>alert("Contraseña incorrecta.");
-            //     location.href = "login.html";</script>';
-            // }
+            mostrarError("Error", "Contraseña incorrecta");
         }
     } else {
-        // Usuario no encontrado
-        echo '<script>alert("Usuario no encontrado.");
-        location.href = "login.html";</script>';
+        mostrarError("Error", "Usuario no encontrado");
     }
 } else {
-    // Error en la consulta SQL
-    echo "Error en la consulta: " . mysqli_error($conn);
+    mostrarError("Error", "Error en la consulta: " . mysqli_error($conn));
 }
 
-// Liberar resultados y cerrar conexión
-mysqli_free_result($resultado);
+mysqli_stmt_close($stmt);
 mysqli_close($conn);
+
+// Función para mostrar errores usando SweetAlert2
+function mostrarError($titulo, $mensaje = "") {
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "' . $titulo . '",
+                text: "' . $mensaje . '",
+                allowOutsideClick: false
+            }).then((result) => {
+                window.location.href = "login.html";
+            });
+        </script>
+    </body>
+    </html>';
+}
 ?>
