@@ -20,23 +20,18 @@ mysqli_stmt_bind_param($stmt, "s", $usuario);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 
-// Verificar si la consulta se ejecutó correctamente
 if ($resultado) {
     $fila = mysqli_fetch_assoc($resultado);
     
     if ($fila) {
-        // Debug - Comentar en producción
-        error_log("Usuario encontrado - ID Estado: " . $fila['id_estado']);
-        
-        // Verificar estado del usuario
         if ($fila['id_estado'] == 2) {
             mostrarError("Usuario Inactivo", "No tienes permisos para acceder. Este usuario está inactivo.");
             exit();
         }
         
-        // Verificar contraseña
         if (password_verify($contraseña, $fila['contraseña'])) {
-            // Guardar datos en sesión
+            // Guardar el id del usuario en la sesión
+            $_SESSION['usuario_id'] = $fila['id'];
             $_SESSION['usuario'] = $usuario;
             $_SESSION['idcargo'] = $fila['idcargo'];
             $_SESSION['id_estado'] = $fila['id_estado'];
@@ -50,7 +45,7 @@ if ($resultado) {
                     header("Location: under/index_student.php");
                     break;
                 case 3:
-                    header("Location: under/index_teacher.php");
+                    header("Location: under/gestion_cursos_teacher.php");
                     break;
                 default:
                     mostrarError("Error", "Tipo de usuario no válido");
@@ -69,7 +64,6 @@ if ($resultado) {
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 
-// Función para mostrar errores usando SweetAlert2
 function mostrarError($titulo, $mensaje = "") {
     echo '<!DOCTYPE html>
     <html>
