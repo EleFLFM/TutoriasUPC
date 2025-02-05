@@ -1,3 +1,4 @@
+<!-- Archivo login controller -->
 <?php
 session_start();
 
@@ -52,7 +53,8 @@ if ($resultado) {
                     exit();
             }
         } else {
-            mostrarError("Error", "Contraseña incorrecta");
+            
+            mostrarError("Error", $fila['contraseña']);
         }
     } else {
         mostrarError("Error", "Usuario no encontrado");

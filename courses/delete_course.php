@@ -35,7 +35,7 @@ if(isset($_GET['code'])) {
         $_SESSION['error'] = "Error al eliminar el curso: " . $conn->error;
     }
     
-    header("Location: index_course.php");
+    header("Location: ../under/gestion_cursos.php");
     exit();
 } else {
     $_SESSION['error'] = "No se proporcionó el código del curso.";
