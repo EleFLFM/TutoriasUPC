@@ -54,7 +54,7 @@ if ($resultado) {
             }
         } else {
             
-            mostrarError("Error", $fila['contraseña']);
+            mostrarError("Error", "Contraseña incorrecta");
         }
     } else {
         mostrarError("Error", "Usuario no encontrado");
