@@ -1,6 +1,7 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +19,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
+
     <!-- SweetAlert2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
@@ -27,7 +28,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include "sidebar_admin.php" ?>
+        <?php include "sidebar_teacher.php" ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -89,7 +90,7 @@
                         $sql_enroll = "INSERT INTO estudiante_curso (usuario_id, course_code) VALUES (?, ?)";
                         $stmt_enroll = $conn->prepare($sql_enroll);
                         $stmt_enroll->bind_param("is", $studentId, $courseCode);
-                        
+
                         if ($stmt_enroll->execute()) {
                             $_SESSION['message'] = [
                                 'type' => 'success',
@@ -106,11 +107,10 @@
                         $stmt_enroll->close();
                     }
                     $stmt_check->close();
-                    
+
                     // Redireccionar para evitar reenvío del formulario
                     echo "<script>window.location.href = 'enroll_student_course.php?code=" . $code . "';</script>";
-exit;
-
+                    exit;
                 }
 
                 // Consultar estudiantes no matriculados
@@ -153,10 +153,10 @@ exit;
                                                     <td>' . htmlspecialchars($row['nombre']) . '</td>
                                                     <td>' . htmlspecialchars($row['usuario']) . '</td>
                                                     <td>
-                                                        <form id="form_'.$row['id'].'" method="post">
+                                                        <form id="form_' . $row['id'] . '" method="post">
                                                             <input type="hidden" name="student_id" value="' . $row['id'] . '">
                                                             <input type="hidden" name="course_code" value="' . $code . '">
-                                                            <button type="button" class="btn btn-primary btn-icon-split" onclick="confirmarMatricula('.$row['id'].', \''.htmlspecialchars($row['nombre'], ENT_QUOTES).'\')">
+                                                            <button type="button" class="btn btn-primary btn-icon-split" onclick="confirmarMatricula(' . $row['id'] . ', \'' . htmlspecialchars($row['nombre'], ENT_QUOTES) . '\')">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-user-plus"></i>
                                                                 </span>
@@ -175,12 +175,14 @@ exit;
                             </div>
                         </div>
                     </div>
-                    <a href="gestion_cursos.php" class="btn btn-secondary btn-icon-split" style="left: 5%; position: relative;">
+
+                    <a href="edit_course_teacher.php?code=<?php echo $code ?>" class="btn btn-secondary btn-icon-split" style="left: 5%; position: relative;">
                         <span class="icon text-white-50">
                             <i class="fas fa-arrow-left"></i>
                         </span>
                         <span class="text">Regresar</span>
                     </a>
+
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -253,4 +255,5 @@ exit;
         }
     </script>
 </body>
+
 </html>

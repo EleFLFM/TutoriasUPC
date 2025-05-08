@@ -31,7 +31,7 @@
 
         <!-- Sidebar -->
          <?php
-         include "sidebar_admin.php"
+         include "sidebar_teacher.php"
          ?>
         <!-- End of Sidebar -->
 
@@ -465,7 +465,7 @@ $conn->close();
 
 </style>
                 <br>
-                <a href="gestion_cursos.php" class="btn btn-secondary btn-icon-split" style="left: 5%; position: relative;">
+                <a href="gestion_cursos_teacher.php" class="btn btn-secondary btn-icon-split" style="left: 5%; position: relative;">
                     <span class="icon text-white-50">
                             <i class="fas fa-arrow-left"></i>
                     </span>
