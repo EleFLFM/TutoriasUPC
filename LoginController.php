@@ -43,7 +43,7 @@ if ($resultado) {
                     header("Location: under/index_admin.php");
                     break;
                 case 2:
-                    header("Location: under/index_student.php");
+                    header("Location: under/show_cursos.php");
                     break;
                 case 3:
                     header("Location: under/gestion_cursos_teacher.php");

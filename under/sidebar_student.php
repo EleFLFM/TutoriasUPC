@@ -12,7 +12,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index_student.php">
+        <a class="nav-link" href="all_courses.php">
             <img src="img/casa.png" alt="" style="width: 35px;">
             <span>Inicio</span></a>
     </li>
