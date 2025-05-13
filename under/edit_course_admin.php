@@ -541,6 +541,22 @@ echo '<h1 class="h3 mb-4 text-gray-800">Gestión del Curso: ' . htmlspecialchars
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css" rel="stylesheet">
 
     <script>
+        function confirmarEliminacion() {
+    Swal.fire({
+        title: "¿Está seguro?",
+        text: "¿Desea eliminar la asignación del docente a este curso?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("formEliminarDocente").submit();
+        }
+    });
+}
     $(document).ready(function() {
         // Inicializar DataTable
         $('#studentsTable').DataTable({
