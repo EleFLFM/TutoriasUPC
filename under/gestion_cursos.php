@@ -116,11 +116,11 @@
                                                     Docente: ' . htmlspecialchars($nombre_docente) . '
                                                 </div>
                                                 <div class="course-actions d-flex justify-content-between">
-                                                    <a href="edit_calculoi.php?code=' . urlencode($code) . '" class="btn btn-info btn-sm">
+                                                    <a href="edit_course_admin.php?code=' . urlencode($code) . '" class="btn btn-info btn-sm">
                                                         <i class="fas fa-info-circle mr-1"></i>Detalles
                                                     </a>
                                                     <div class="btn-group" role="group">
-                                                        <a href="edit_calculoi.php?code=' . urlencode($code) . '" class="btn btn-warning btn-sm">
+                                                        <a href="edit_course_admin.php?code=' . urlencode($code) . '" class="btn btn-warning btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                          <button class="delete btn btn-danger btn-sm ml-1" data-code="' . $code . '">

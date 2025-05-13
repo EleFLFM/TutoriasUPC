@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {
-                        window.location.href = 'edit_calculoi.php?code=<?php echo $course_code; ?>';
+                        window.location.href = 'edit_course_admin.php?code=<?php echo $course_code; ?>';
                     });
                 } else {
                     Swal.fire({
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         title: 'Error',
                         text: 'Error al asignar el docente al curso.'
                     }).then(() => {
-                        window.location.href = 'edit_calculoi.php?code=<?php echo $course_code; ?>';
+                        window.location.href = 'edit_course_admin.php?code=<?php echo $course_code; ?>';
                     });
                 }
             });
