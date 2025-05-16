@@ -63,30 +63,34 @@
                                 <div class="collapse show" id="collapseUnit1">
                                     <div class="card-body">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">1. Concepto de Antiderivación</h5>
-                                                </div>
-                                                <p class="mb-1">Antidiferenciación o Integración.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">2. Fórmulas básicas de integración</h5>
-                                                </div>
-                                                <p class="mb-1">Reglas fundamentales de integración.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">3. Aplicación de fórmulas básicas</h5>
-                                                </div>
-                                                <p class="mb-1">Ejercicios prácticos con fórmulas básicas.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">4. Integrales básicas de funciones trigonométricas</h5>
-                                                </div>
-                                                <p class="mb-1">Integración de seno, coseno, tangente, etc.</p>
-                                            </a>
+                                           <a href="https://www.youtube.com/watch?v=kdtdn5_iAhI" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">1. Concepto de Antiderivación</h5>
+  </div>
+  <p class="mb-1">Antidiferenciación o Integración. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=JCIpAbNXiYk" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">2. Fórmulas básicas de integración</h5>
+  </div>
+  <p class="mb-1">Reglas directas para integrar funciones elementales. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=v4OvY0eiZjQ" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">3. Aplicación de fórmulas básicas</h5>
+  </div>
+  <p class="mb-1">Ejercicios con fórmulas básicas. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://youtu.be/Zaxr2cf5ACk?si=bdUMaX_CQNOPYmcO" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">4. Integrales de funciones trigonométricas</h5>
+  </div>
+  <p class="mb-1">Seno, coseno, tangente y más. <span class="badge badge-primary">Video</span></p>
+</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -102,60 +106,69 @@
                                 <div class="collapse" id="collapseUnit2">
                                     <div class="card-body">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">1. Integración por sustitución</h5>
-                                                </div>
-                                                <p class="mb-1">Método de cambio de variable.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">2. Integración por partes</h5>
-                                                </div>
-                                                <p class="mb-1">Aplicación de la fórmula ∫u dv = uv - ∫v du.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">3. Integrales de potencias de funciones trigonométricas</h5>
-                                                </div>
-                                                <p class="mb-1">Casos 1 al 5 con diferentes exponentes.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">4. Sustitución trigonométrica (con radical)</h5>
-                                                </div>
-                                                <p class="mb-1">Casos 1, 2 y 3 con expresiones radicales.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">5. Sustitución trigonométrica (sin radical)</h5>
-                                                </div>
-                                                <p class="mb-1">Casos 1, 2 y 3 sin expresiones radicales.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">6. Integrales con ax²+bx+c</h5>
-                                                </div>
-                                                <p class="mb-1">Técnicas para este tipo de expresiones.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">7. Fracciones parciales</h5>
-                                                </div>
-                                                <p class="mb-1">Descomposición de funciones racionales.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">8. Integrales de funciones racionales de senx y cosx</h5>
-                                                </div>
-                                                <p class="mb-1">Técnicas especiales para estas funciones.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">9. Integrales impropias</h5>
-                                                </div>
-                                                <p class="mb-1">Límites de integración infinitos o discontinuidades.</p>
-                                            </a>
+                                            <a href="https://www.youtube.com/watch?v=YrxsRJFifi8" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">1. Integración por sustitución</h5>
+  </div>
+  <p class="mb-1">Cambio de variable para simplificar la integral. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=19fPZdHnKzE" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">2. Integración por partes</h5>
+  </div>
+  <p class="mb-1">Técnica basada en la regla del producto. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=jb_zEZPEPSY" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">3. Potencias de funciones trigonométricas</h5>
+  </div>
+  <p class="mb-1">Ejemplos con sen²(x), cos³(x), etc. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=or5zBGwjW2s" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">4. Sustitución trigonométrica (con radical)</h5>
+  </div>
+  <p class="mb-1">Usos de identidades trigonométricas con raíces. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=jxDgqXEnOak&list=PL9SnRnlzoyX0xKKJEF2C3KQQnL3zT0ne0" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">5. Sustitución trigonométrica (sin radical)</h5>
+  </div>
+  <p class="mb-1">Casos donde no aparecen raíces explícitas. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=46W5iFX3uIk&list=PL9SnRnlzoyX2kl9anjMt84Dhoi3QRdoJW" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">6. Integrales con ax²+bx+c</h5>
+  </div>
+  <p class="mb-1">Integración de funciones racionales con polinomios cuadráticos. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=6pFmUh41jsQ&list=PLeySRPnY35dFylo7SabLBjsAx5MoepZyY" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">7. Fracciones parciales</h5>
+  </div>
+  <p class="mb-1">Descomposición de funciones racionales. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=LBGnVmYTAVQ" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">8. Funciones racionales de senx y cosx</h5>
+  </div>
+  <p class="mb-1">Técnicas específicas para sen/cos. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=JYpBv9jMLOk" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">9. Integrales impropias</h5>
+  </div>
+  <p class="mb-1">Integración en intervalos infinitos o con discontinuidades. <span class="badge badge-primary">Video</span></p>
+</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -172,54 +185,62 @@
                                 <div class="collapse" id="collapseUnit3">
                                     <div class="card-body">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">1. Introducción a la integral definida</h5>
-                                                </div>
-                                                <p class="mb-1">Concepto y propiedades fundamentales.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">2. Integral de Riemann</h5>
-                                                </div>
-                                                <p class="mb-1">Definición formal y ejemplos.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">3. Áreas por suma de Riemann</h5>
-                                                </div>
-                                                <p class="mb-1">Aproximación del área bajo curvas.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">4. Teorema fundamental del cálculo</h5>
-                                                </div>
-                                                <p class="mb-1">Relación entre derivación e integración.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">5. Área de una región plana</h5>
-                                                </div>
-                                                <p class="mb-1">Cálculo de áreas con integrales.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">6. Área bajo una curva</h5>
-                                                </div>
-                                                <p class="mb-1">Técnicas específicas para este cálculo.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">7. Área entre dos curvas</h5>
-                                                </div>
-                                                <p class="mb-1">Determinación del área entre funciones.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">8. Volumen de sólidos de revolución</h5>
-                                                </div>
-                                                <p class="mb-1">Método de discos y arandelas.</p>
-                                            </a>
+                                            <a href="https://www.youtube.com/watch?v=TocqVkBzDrA" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">1. Introducción a la integral definida</h5>
+  </div>
+  <p class="mb-1">Base teórica de las integrales definidas. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=zuo_qEBeZSM" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">2. Integral de Riemann</h5>
+  </div>
+  <p class="mb-1">Suma de Riemann y definición formal. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=kdtdn5_iAhI" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">3. Áreas por suma de Riemann</h5>
+  </div>
+  <p class="mb-1">Visualización del área bajo la curva. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://youtu.be/oJfipj5Oky4?si=LcN3mzKJIjwl_Lvd" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">4. Teorema fundamental del cálculo</h5>
+  </div>
+  <p class="mb-1">Relación entre derivada e integral. <span class="badge badge-primary">Video</span></p>
+</a>
+<a href="https://www.youtube.com/watch?v=U1vJ73VFz1E" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">5. Área de una región plana</h5>
+  </div>
+  <p class="mb-1">Usando integrales definidas para calcular áreas. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=s1BMqFdtZfM" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">6. Área bajo una curva</h5>
+  </div>
+  <p class="mb-1">Área bajo funciones continuas. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=z-aYtb8_WJg" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">7. Área entre dos curvas</h5>
+  </div>
+  <p class="mb-1">Integral de la diferencia de funciones. <span class="badge badge-primary">Video</span></p>
+</a>
+
+<a href="https://www.youtube.com/playlist?list=PL9SnRnlzoyX0PTDHm5GXFN2a5K9vcH79h" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">8. Volumen de sólidos de revolución</h5>
+  </div>
+  <p class="mb-1">Método de discos y de casquillos. <span class="badge badge-primary">Video</span></p>
+</a>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -235,42 +256,48 @@
                                 <div class="collapse" id="collapseBibliography">
                                     <div class="card-body">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Leithold, L. (1998)</h5>
-                                                </div>
-                                                <p class="mb-1">Matemáticas previas al cálculo. 3a ed. Harla, México.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Edward y Penney (2002)</h5>
-                                                </div>
-                                                <p class="mb-1">Cálculo con Geometría analítica. Prentice Hall.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Purcell, E. (2007)</h5>
-                                                </div>
-                                                <p class="mb-1">Cálculo. 9a ed. Prentice Hall, México.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Takeuchi, Y. et al. (1983)</h5>
-                                                </div>
-                                                <p class="mb-1">Hacia la matemática: un enfoque estructurado. Grupo Editorial Andino.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Leithold, L. (2008)</h5>
-                                                </div>
-                                                <p class="mb-1">El cálculo con geometría analítica. 7a ed. Oxford University, México.</p>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Apostol, T. (1988)</h5>
-                                                </div>
-                                                <p class="mb-1">Cálculo, tomo I. Editorial Reverte S.A., España.</p>
-                                            </a>
+                                            <a href="https://universo-gratuito.blogspot.com/2013/03/matematicas-previas-al-calculo-3era.html" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Leithold, L. (1998)</h5>
+  </div>
+  <p class="mb-1">Matemáticas previas al cálculo. 3a ed. Harla, México. <span class="badge badge-info">Libro</span></p>
+</a>
+
+<a href="https://archive.org/details/CalculoConGeometriaAnaliticaEdwardsPenneySolucionario" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Edward y Penney (2002)</h5>
+  </div>
+  <p class="mb-1">Cálculo con Geometría analítica. Prentice Hall. <span class="badge badge-info">Libro</span></p>
+</a>
+
+<a href="https://www.academia.edu/15156764/Calculo_9na_Edicion_Purcell_Varberg_Rigdon" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Purcell, E. (2007)</h5>
+  </div>
+  <p class="mb-1">Cálculo. 9a ed. Prentice Hall, México. <span class="badge badge-info">Libro</span></p>
+</a>
+
+<a href="https://www.academia.edu/117885432/Hacia_la_matem%C3%A1tica_un_enfoque_estructurado" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Takeuchi, Y. et al. (1983)</h5>
+  </div>
+  <p class="mb-1">Hacia la matemática: un enfoque estructurado. Grupo Editorial Andino. <span class="badge badge-info">Libro</span></p>
+</a>
+
+<a href="#" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Leithold, L. (2008)</h5>
+  </div>
+  <p class="mb-1">El cálculo con geometría analítica. 7a ed. Oxford University, México. <span class="badge badge-info">Libro</span></p>
+</a>
+
+<a href="https://www.academia.edu/31719892/Calculo_Tom_Apostol_Vol_1" target="_blank" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Apostol, T. (1988)</h5>
+  </div>
+  <p class="mb-1">Cálculo, tomo I. Editorial Reverte S.A., España. <span class="badge badge-info">Libro</span></p>
+</a>
+
                                         </div>
                                     </div>
                                 </div>

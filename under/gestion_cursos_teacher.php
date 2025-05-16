@@ -127,14 +127,6 @@ if ($result->num_rows > 0) {
                             <a href="edit_course_teacher.php?code=' . urlencode($code) . '" class="btn btn-info btn-circle">
                                 <i class="fas fa-info-circle"></i>
                             </a>
-                            <!-- Editar -->
-                            <a href="edit_course_teacher.php?code=' . urlencode($code) . '" class="btn btn-warning btn-circle">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </a>
-                            <!-- Eliminar -->
-                            <a href="edit_course_teacher.php?code=' . urlencode($code) . '" class="btn btn-danger btn-circle">
-                                <i class="fas fa-trash"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
