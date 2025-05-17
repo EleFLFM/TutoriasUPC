@@ -148,7 +148,7 @@ include "../conexion.php";
                                             </div>
                                             
                                             <div class="mt-auto">
-                                                <a href="<?= $url ?>" class="btn btn-primary btn-sm btn-block">
+                                                <a href="<?= $url. '?code=' . urlencode($code) ?>" class="btn btn-primary btn-sm btn-block">
                                                     <i class="fas fa-arrow-right mr-1"></i> Ver detalles
                                                 </a>
                                             </div>

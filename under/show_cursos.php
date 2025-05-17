@@ -148,9 +148,10 @@ include "../conexion.php";
                                             </div>
                                             
                                             <div class="mt-auto text-center">
-                                                <a href="<?= $url ?>" class="btn btn-primary btn-sm btn-detalles">
-                                                    <i class="fas fa-arrow-right mr-1"></i> Ir al curso
-                                                </a>
+                                                <<a href="<?= $url . '?code=' . urlencode($code) ?>" class="btn btn-primary btn-sm btn-detalles">
+    <i class="fas fa-arrow-right mr-1"></i> Ir al curso
+</a>
+
                                             </div>
                                         </div>
                                     </div>
