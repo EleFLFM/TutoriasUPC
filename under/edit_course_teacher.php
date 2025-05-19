@@ -260,42 +260,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete_student' && isset($_GET
                             </div>
                             
                             <!-- Sección de Acciones del Curso -->
-                            <div class="card shadow mb-4 card-management">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-cogs mr-2"></i>Acciones del Curso
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <?php
-                                    // Obtener estado actual del curso
-                                    $sql_estado = "SELECT id_estado FROM courses WHERE code = ?";
-                                    $stmt = $conn->prepare($sql_estado);
-                                    $stmt->bind_param("s", $code);
-                                    $stmt->execute();
-                                    $result = $stmt->get_result();
-                                    $estado_actual = $result->fetch_assoc()['id_estado'];
-                                    ?>
-                                    
-                                    <div class="mb-3">
-                                        <h6 class="font-weight-bold mb-2">Estado del Curso:</h6>
-                                        <span class="badge <?= $estado_actual == 1 ? 'badge-success' : 'badge-secondary' ?> status-badge">
-                                            <?= $estado_actual == 1 ? 'Activo' : 'Inactivo' ?>
-                                        </span>
-                                    </div>
-                                    
-                                    <div class="d-flex justify-content-between">
-                                        <a href="?code=<?= urlencode($code) ?>&estado=1" 
-                                           class="btn btn-sm <?= $estado_actual == 1 ? 'btn-success disabled' : 'btn-outline-success' ?> action-btn">
-                                            <i class="fas fa-check mr-1"></i> Activar
-                                        </a>
-                                        <a href="?code=<?= urlencode($code) ?>&estado=2" 
-                                           class="btn btn-sm <?= $estado_actual == 2 ? 'btn-secondary disabled' : 'btn-outline-secondary' ?> action-btn">
-                                            <i class="fas fa-times mr-1"></i> Desactivar
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
