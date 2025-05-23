@@ -101,47 +101,42 @@ $docentes = mysqli_query($conn, "
 
                                         <div class="collapse mt-3" id="curso<?= $docente['id'] ?>_<?= $curso['code'] ?>">
                                             <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th width="50%">Comentario</th>
-                                                            <th>Calificación</th>
-                                                            <th>Fecha</th>
-                                                            <th>Anónimo</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php 
-                                                        $comentarios = mysqli_query($conn, "
-                                                            SELECT cd.*, c.nombre AS nombre_curso, u.nombre AS estudiante
-                                                            FROM comentarios_docentes cd
-                                                            INNER JOIN courses c ON cd.course_code = c.code
-                                                            INNER JOIN usuarios u ON cd.usuario_id = u.id
-                                                            WHERE cd.docente_id = {$docente['id']} AND cd.course_code = '{$curso['code']}'
-                                                            ORDER BY cd.fecha_creacion DESC
-                                                        ");
-                                                        
-                                                        while ($comentario = mysqli_fetch_assoc($comentarios)): 
-                                                        ?>
-                                                        <tr>
-                                                            <td><?= htmlspecialchars($comentario['comentario']) ?></td>
-                                                            <td>
-                                                                <span class="badge badge-<?= $comentario['calificacion'] >= 3 ? 'success' : 'warning' ?>">
-                                                                    <?= $comentario['calificacion'] ?>/5
-                                                                </span>
-                                                            </td>
-                                                            <td><?= date('d/m/Y', strtotime($comentario['fecha_creacion'])) ?></td>
-                                                            <td>
-                                                                <?php if ($comentario['es_anonimo']): ?>
-                                                                <span class="text-danger"><i class="fas fa-user-secret"></i> Sí</span>
-                                                                <?php else: ?>
-                                                                <span class="text-success"><i class="fas fa-user"></i> No</span>
-                                                                <?php endif; ?>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endwhile; ?>
-                                                    </tbody>
-                                                </table>
+                                              <!-- Dentro del while que muestra los comentarios, cambia la estructura de la tabla así: -->
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th width="40%">Comentario</th>
+            <th>Estudiante</th>
+            <th class="w-25">Calificación</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $comentarios = mysqli_query($conn, "
+            SELECT cd.*, c.nombre AS nombre_curso, u.nombre AS estudiante
+            FROM comentarios_docentes cd
+            INNER JOIN courses c ON cd.course_code = c.code
+            INNER JOIN usuarios u ON cd.usuario_id = u.id
+            WHERE cd.docente_id = {$docente['id']} AND cd.course_code = '{$curso['code']}'
+            ORDER BY cd.fecha_creacion DESC
+        ");
+        
+        while ($comentario = mysqli_fetch_assoc($comentarios)): 
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($comentario['comentario']) ?></td>
+            <td><?= htmlspecialchars($comentario['estudiante']) ?></td>
+            <td>
+                <span class="badge badge-<?= $comentario['calificacion'] >= 3 ? 'success' : 'warning' ?>">
+                    <?= $comentario['calificacion'] ?>/5
+                </span>
+            </td>
+            <td><?= date('d/m/Y', strtotime($comentario['fecha_creacion'])) ?></td>
+        </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
                                             </div>
                                         </div>
                                     </div>
