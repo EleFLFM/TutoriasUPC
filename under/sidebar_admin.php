@@ -59,6 +59,12 @@
             <span><strong>Comentarios</strong></span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="page_registro.php">
+            <img src="img/reporte.png" alt="" style="width: 35px;">
+            <span><strong>Registro(logs)</strong></span>
+        </a>
+    </li>
     
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
