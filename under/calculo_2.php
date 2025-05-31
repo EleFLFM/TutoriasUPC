@@ -1,65 +1,66 @@
 <?php
 session_start();
 require_once "../conexion.php";
-// Verificar primero si viene por GET
-if(isset($_GET['code'])) {
-    $code = intval($_GET['code']);
-    $_SESSION['current_course_code'] = $code; // Guardar en sesión para futuras cargas
-} 
-// Si no, verificar si está en sesión
-elseif(isset($_SESSION['current_course_code'])) {
-    $code = $_SESSION['current_course_code'];
-} 
-// Si no hay código, redirigir
-else {
+
+// Verificar parámetros GET (solo para identificar el curso)
+$code = isset($_GET['code']) ? intval($_GET['code']) : 0;
+if($code === 0) {
     header('Location: show_cursos.php');
     exit();
 }
-// Verificar si el estudiante ha visto todos los videos
-$sql_videos = "SELECT COUNT(DISTINCT v.video_url) as total_videos 
-               FROM (
-                   SELECT video_url FROM video_views WHERE course_code = ?
-                   UNION
-                   SELECT video_url FROM videos_curso WHERE course_code = ?
-               ) as v";
-$stmt_videos = $conn->prepare($sql_videos);
-$stmt_videos->bind_param("ii", $code, $code);
-$stmt_videos->execute();
-$total_videos = $stmt_videos->get_result()->fetch_assoc()['total_videos'];
 
-$sql_vistos = "SELECT COUNT(DISTINCT video_url) as vistos 
-               FROM video_views 
-               WHERE course_code = ? AND usuario_id = ? AND visto = TRUE";
-$stmt_vistos = $conn->prepare($sql_vistos);
-$stmt_vistos->bind_param("ii", $code, $_SESSION['usuario_id']);
-$stmt_vistos->execute();
-$videos_vistos = $stmt_vistos->get_result()->fetch_assoc()['vistos'];
-
-// Obtener docente del curso - Versión corregida
-$docente_id = 0;
-$docente_nombre = "Docente no asignado"; // Valor por defecto
-
-$sql_docente = "SELECT u.id, u.nombre FROM docente_curso dc
-                JOIN usuarios u ON dc.docente_id = u.id
-                WHERE dc.course_code = ? LIMIT 1";
-$stmt_docente = $conn->prepare($sql_docente);
-
-if ($stmt_docente) {
-    $stmt_docente->bind_param("i", $code);
-    if ($stmt_docente->execute()) {
-        $result_docente = $stmt_docente->get_result();
-        if ($result_docente->num_rows > 0) {
-            $docente = $result_docente->fetch_assoc();
-            $docente_id = $docente['id'];
-            $docente_nombre = $docente['nombre'];
-        }
-    }
-    $stmt_docente->close();
+// Verificar usuario logueado
+if(!isset($_SESSION['usuario_id'])) {
+    header('Location: ../login.php');
+    exit();
 }
+$usuario_id = $_SESSION['usuario_id'];
+
+// Procesar comentario si se envió el formulario
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
+    $comentario = trim($_POST['comentario']);
+    
+    // Validar comentario
+    if(strlen($comentario) >= 10) {
+        // Verificar matrícula del usuario en el curso
+        $sql_verificar = "SELECT 1 FROM estudiante_curso WHERE usuario_id = ? AND course_code = ?";
+        $stmt_verificar = $conn->prepare($sql_verificar);
+        $stmt_verificar->bind_param("ii", $usuario_id, $code);
+        $stmt_verificar->execute();
+        $puede_comentar = $stmt_verificar->get_result()->num_rows > 0;
+        
+        if($puede_comentar) {
+            // Insertar comentario
+            $sql = "INSERT INTO comentarios_cursos (usuario_id, course_code, comentario, fecha_creacion) 
+                    VALUES (?, ?, ?, NOW())";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iis", $usuario_id, $code, $comentario);
+            
+            if($stmt->execute()) {
+                $_SESSION['comentario_exito'] = "¡Gracias! Tu comentario ha sido registrado.";
+            } else {
+                $_SESSION['comentario_error'] = "Error al guardar el comentario. Intenta nuevamente.";
+            }
+        } else {
+            $_SESSION['comentario_error'] = "No estás matriculado en este curso.";
+        }
+    } else {
+        $_SESSION['comentario_error'] = "El comentario debe tener al menos 10 caracteres.";
+    }
+    
+    // Redirigir para evitar reenvío del formulario
+    header("Location: calculo_2.php?code=$code");
+    exit();
+}
+
+// Mostrar mensajes de éxito/error
+$mensaje_exito = isset($_SESSION['comentario_exito']) ? $_SESSION['comentario_exito'] : '';
+$mensaje_error = isset($_SESSION['comentario_error']) ? $_SESSION['comentario_error'] : '';
+unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,7 +78,8 @@ if ($stmt_docente) {
     
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 
 <body id="page-top">
@@ -86,7 +88,7 @@ if ($stmt_docente) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-         <?php include "sidebar_student.php" ?>
+        <?php include "sidebar_student.php" ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -105,13 +107,12 @@ if ($stmt_docente) {
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Cálculo 2!</h1>
                                 <div class="copyright text-center my-auto">
-                                    <span> 
-                                        Domina las técnicas de integración y sus aplicaciones en problemas reales.
-                                    </span>
+                                    <span>Domina las técnicas de integración y sus aplicaciones en problemas reales.</span>
                                 </div>
                             </div>
                             <br>
 
+                           
                             <!-- Unidad 1: La Integral -->
                             <div class="card shadow mb-4">
                                 <a href="#collapseUnit1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseUnit1">
@@ -325,6 +326,7 @@ target="_blank"
                                 </div>
                             </div>
 
+
                             <!-- Bibliografía -->
                             <div class="card shadow mb-4">
                                 <a href="#collapseBibliography" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseBibliography">
@@ -381,200 +383,47 @@ target="_blank"
                                     </div>
                                 </div>
                             </div>
-<!-- Sección de Comentarios -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
-            <i class="fas fa-comments mr-2"></i>Valoración del Docente
-        </h6>
-    </div>
-    <div class="card-body">
-      <!-- En la sección donde muestras el progreso -->
-<div class="alert alert-info">
-    <h5>Progreso del Curso</h5>
-    <div class="progress mb-2">
-        <div class="progress-bar progress-bar-striped" role="progressbar" 
-             style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <p class="progress-text mb-0">0/0 videos vistos</p>
-</div>
-<!-- Sección de Comentarios -->
-<div id="seccion-comentarios" style="<?= ($videos_vistos >= $total_videos) ? '' : 'display: none;' ?>">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary">
-                <i class="fas fa-comments mr-2"></i>Valoración del Docente
-            </h5>
-        </div>
-        <div class="card-body">
-            <?php
-            if ($total_videos > 0 && $videos_vistos >= $total_videos) {
-                // Verificar si ya ha comentado
-                $sql_comentario = "SELECT * FROM comentarios_docentes 
-                                 WHERE course_code = ? AND docente_id = ? 
-                                 AND usuario_id = ?";
-                $stmt_comentario = $conn->prepare($sql_comentario);
-                $stmt_comentario->bind_param("iii", $code, $docente_id, $_SESSION['usuario_id']);
-                $stmt_comentario->execute();
-                $ya_comento = $stmt_comentario->get_result()->num_rows > 0;
-                
-                if ($ya_comento) {
-                    echo '<div class="alert alert-success">¡Gracias por tu feedback! Tu comentario ha sido registrado de forma anónima.</div>';
-                } else {
-                    // Mostrar formulario para comentar
-                    echo '<div class="mb-3">
-                            <h5>Valora a tu docente: '.htmlspecialchars($docente_nombre).'</h5>
-                            <p>Has completado todos los materiales del curso. Por favor, comparte tu experiencia.</p>
-                          </div>
-                          <form id="formComentario">
-                            <input type="hidden" name="docente_id" value="'.$docente_id.'">
-                            <input type="hidden" name="course_code" value="'.$code.'">
-                            <input type="hidden" name="usuario_id" value="'.$_SESSION['usuario_id'].'">
-                            
-                            <div class="form-group">
-                                <label>Calificación (1-5 estrellas)</label>
-                                <div class="rating-stars mb-2">
-                                    <i class="far fa-star" data-rating="1"></i>
-                                    <i class="far fa-star" data-rating="2"></i>
-                                    <i class="far fa-star" data-rating="3"></i>
-                                    <i class="far fa-star" data-rating="4"></i>
-                                    <i class="far fa-star" data-rating="5"></i>
-                                    <input type="hidden" name="calificacion" id="calificacion" value="0">
+
+                            <!-- Sección de Comentarios -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-comments mr-2"></i>Envía tu retroalimentación
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <?php if($mensaje_exito): ?>
+                                        <div class="alert alert-success"><?= $mensaje_exito ?></div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mensaje_error): ?>
+                                        <div class="alert alert-danger"><?= $mensaje_error ?></div>
+                                    <?php endif; ?>
+                                    
+                                    <form method="POST" action="calculo_2.php?code=<?= $code ?>">
+                                        <div class="form-group">
+                                            <label for="comentario" class="font-weight-bold">Tu comentario:</label>
+                                             <textarea class="form-control" id="comentario" name="comentario"
+              style="min-height: 150px; width: 100%; padding: 15px; font-size: 16px; line-height: 1.6; resize: vertical;"
+              placeholder="Escribe tu retroalimentación sobre este curso..."
+              required minlength="10"></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-paper-plane mr-1"></i> Enviar Comentario
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-    <label for="comentario" class="font-weight-bold">Comentario (opcional)</label>
-    <textarea class="form-control" id="comentario" name="comentario"
-              rows="6" placeholder="Escribe tu comentario aquí..."
-              style="min-height: 150px; resize: vertical; font-size: 16px; line-height: 1.6;"></textarea>
-</div>
-                            
-                            <button type="submit" class="btn btn-primary mt-3">
-                                <i class="fas fa-paper-plane mr-1"></i> Enviar Valoración
-                            </button>
-                          </form>';
-                }
-            } else {
-                $porcentaje = $total_videos > 0 ? round(($videos_vistos / $total_videos) * 100) : 0;
-                echo '<div class="alert alert-info">
-                        <h5>Progreso del Curso: '.$porcentaje.'% completado</h5>
-                        <div class="progress mb-3">
-                            <div class="progress-bar" role="progressbar" style="width: '.$porcentaje.'%" 
-                                 aria-valuenow="'.$porcentaje.'" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <p>Podrás valorar a tu docente cuando hayas visto todos los materiales del curso ('.$videos_vistos.'/'.$total_videos.' videos vistos).</p>
-                      </div>';
-            }
-            ?>
-        </div>
-    </div>
-</div>
 
-<style>
-.rating-stars { 
-    font-size: 24px; 
-    cursor: pointer; 
-    color: #ddd;
-}
-.rating-stars .fas, 
-.rating-stars .hover { 
-    color: gold; 
-}
-</style>
-
-<script>
-$(document).ready(function() {
-    // Manejar estrellas de calificación
-    $(".rating-stars i").hover(
-        function() {
-            $(this).addClass('hover');
-            $(this).prevAll().addClass('hover');
-        },
-        function() {
-            $(".rating-stars i").removeClass('hover');
-        }
-    );
-    
-    $(".rating-stars i").click(function() {
-        const rating = $(this).data("rating");
-        $("#calificacion").val(rating);
-        $(".rating-stars i").removeClass('fas far');
-        
-        $(".rating-stars i").each(function() {
-            if ($(this).data("rating") <= rating) {
-                $(this).addClass("fas");
-            } else {
-                $(this).addClass("far");
-            }
-        });
-    });
-    
-    // Enviar formulario
-    $("#formComentario").submit(function(e) {
-        e.preventDefault();
-        
-        if ($("#calificacion").val() == "0") {
-            Swal.fire({
-                icon: "warning",
-                title: "Calificación requerida",
-                text: "Por favor selecciona una calificación",
-                confirmButtonColor: "#3085d6"
-            });
-            return;
-        }
-        
-        $.ajax({
-            url: "guardar_comentario.php",
-            method: "POST",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
-                if (response.success) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "¡Gracias!",
-                        text: response.message || "Tu comentario ha sido registrado de forma anónima.",
-                        confirmButtonColor: "#3085d6",
-                        allowOutsideClick: false
-                    }).then(() => {
-                        location.reload();
-                    });
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: response.message || "Ocurrió un error al guardar tu comentario",
-                        confirmButtonColor: "#3085d6"
-                    });
-                }
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Error de conexión",
-                    text: "Ocurrió un problema al comunicarse con el servidor",
-                    confirmButtonColor: "#3085d6"
-                });
-                console.error("Error:", xhr.responseText);
-            }
-        });
-    });
-});
-</script>
-        
-</div>
                             <a href="show_cursos.php" class="btn btn-secondary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-arrow-left"></i>
                                 </span>
-                                
                                 <span class="text">Regresar</span>
                             </a>
                         </div>
-                        
                     </div>
-                    
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -582,7 +431,7 @@ $(document).ready(function() {
 
             <!-- Footer -->
             <?php include "footer.php" ?>
-                <!-- End of Footer -->
+            <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -592,8 +441,6 @@ $(document).ready(function() {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-  
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -607,192 +454,33 @@ $(document).ready(function() {
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-$(document).ready(function() {
-    // Verificar progreso al cargar la página
-    checkProgress();
 
-    // Manejar clic en videos - Versión mejorada
-    $(document).on('click', '.video-link', function(e) {
-        e.preventDefault();
-        const $link = $(this);
-        const videoUrl = $link.attr('href');
-        
-        // Crear elemento de estado si no existe
-        let $status = $link.find('.video-status');
-        if ($status.length === 0) {
-            $status = $('<span class="video-status badge badge-light ml-2"></span>');
-            $link.append($status);
-        }
-        
-        $status.show().html('<i class="fas fa-spinner fa-spin"></i>');
-        
-        // Abrir el video inmediatamente en nueva pestaña
-        const videoTab = window.open(videoUrl, '_blank');
-        
-        // Registrar la visualización
-        $.ajax({
-            url: 'registrar_video.php',
-            method: 'POST',
-            dataType: 'json', // Asegurar que esperamos JSON
-            data: { 
-                video_url: videoUrl, 
-                video_id: $link.data('video-id'), 
-                course_code: $link.data('course-code') 
-            },
-            success: function(response) {
-                if (response && response.success) {
-                    $status.html('<i class="fas fa-check-circle text-success"></i> Visto');
-                    checkProgress();
-                } else {
-                    $status.html('<i class="fas fa-exclamation-circle text-warning"></i> No registrado');
-                    console.error('Error en la respuesta:', response);
-                }
-            },
-            error: function(xhr, status, error) {
-                $status.html('<i class="fas fa-exclamation-circle text-danger"></i> Error');
-                console.error('Error en la solicitud:', error);
-                // Mostrar error al usuario si es necesario
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de conexión',
-                    text: 'No se pudo registrar tu progreso, pero el video se abrió correctamente.',
-                    confirmButtonColor: '#3085d6'
-                });
-            }
-        });
-    });
-
-    // Función mejorada para verificar progreso
-    function checkProgress() {
-        const courseCode = <?= $code ?>;
-        
-        $.ajax({
-            url: 'obtener_progreso_curso.php',
-            method: 'POST',
-            dataType: 'json',
-            data: { course_code: courseCode },
-            success: function(response) {
-                if (response && response.success) {
-                    // Calcular porcentaje con protección contra división por cero
-                    const totalVideos = response.total || 1; // Evitar división por cero
-                    const videosVistos = response.vistos || 0;
-                    const porcentaje = Math.round((videosVistos / totalVideos) * 100);
-                    
-                    // Actualizar UI
-                    $('.progress-bar')
-                        .css('width', porcentaje + '%')
-                        .attr('aria-valuenow', porcentaje)
-                        .text(porcentaje + '%');
-                    
-                    $('.progress-text').html(
-                        `<strong>Progreso:</strong> ${videosVistos}/${totalVideos} videos vistos (${porcentaje}%)`
-                    );
-                    
-                    // Mostrar sección de comentarios si completó todos
-                    if (videosVistos >= totalVideos && totalVideos > 0) {
-                        $('#seccion-comentarios').fadeIn();
-                    }
-                } else {
-                    console.error('Respuesta inválida:', response);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error al verificar progreso:', error);
-                $('.progress-text').html(
-                    '<span class="text-danger">Error al cargar el progreso</span>'
-                );
-            }
-        });
-    }
-
-     $(".rating-stars i").on('mouseenter', function() {
-        const rating = $(this).data('rating');
-        $(this).addClass('fas hover').prevAll().addClass('fas hover');
-        $(this).nextAll().removeClass('fas hover').addClass('far');
-    }).on('mouseleave', function() {
-        updateStarsDisplay();
-    }).on('click', function() {
-        $("#calificacion").val($(this).data('rating'));
-        updateStarsDisplay();
-    });
-
-    function updateStarsDisplay() {
-        const rating = $("#calificacion").val();
-        $(".rating-stars i").each(function() {
-            $(this).removeClass('fas far hover');
-            $(this).addClass($(this).data('rating') <= rating ? 'fas' : 'far');
-        });
-    }
-
-    // Formulario mejorado con reintentos
-    $("#formComentario").submit(function(e) {
-        e.preventDefault();
-        const form = $(this);
-        const submitBtn = form.find('button[type="submit"]');
-        
-        if ($("#calificacion").val() == "0") {
+    <script>
+    // Mostrar alertas si hay mensajes
+    $(document).ready(function() {
+        <?php if($mensaje_exito): ?>
             Swal.fire({
-                icon: "warning",
-                title: "Falta calificación",
-                text: "Por favor selecciona una calificación con las estrellas",
-                confirmButtonColor: "#4e73df"
+                icon: 'success',
+                title: '¡Éxito!',
+                text: '<?= addslashes($mensaje_exito) ?>',
+                confirmButtonColor: '#3085d6'
             });
-            return;
-        }
-
-        submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Enviando...');
-
-        // Función con reintento
-        function submitForm(attempts = 3) {
-            $.ajax({
-                url: "guardar_comentario.php",
-                method: "POST",
-                data: form.serialize(),
-                dataType: "json",
-                timeout: 5000, // 5 segundos de timeout
-                success: function(response) {
-                    if (response && response.success) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "¡Gracias!",
-                            text: "Tu valoración se guardó correctamente",
-                            confirmButtonColor: "#4e73df"
-                        }).then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        showError(response?.message || "Error al guardar");
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (attempts > 1) {
-                        submitForm(attempts - 1); // Reintentar
-                    } else {
-                        showError("No se pudo conectar con el servidor. Intenta más tarde.");
-                    }
-                }
-            });
-        }
-
-        function showError(message) {
-            submitBtn.prop('disabled', false).html('<i class="fas fa-paper-plane"></i> Enviar Valoración');
+        <?php endif; ?>
+        
+        <?php if($mensaje_error): ?>
             Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: message,
-                confirmButtonColor: "#e74a3b"
+                icon: 'error',
+                title: 'Error',
+                text: '<?= addslashes($mensaje_error) ?>',
+                confirmButtonColor: '#3085d6'
             });
-        }
-
-        submitForm(); // Primer intento
+        <?php endif; ?>
     });
-});
-</script>
+    </script>
 </body>
 </html>

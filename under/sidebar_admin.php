@@ -55,7 +55,7 @@
     <!-- Nav Item - Comentarios (sin collapse) -->
     <li class="nav-item">
         <a class="nav-link" href="comentarios_docente.php">
-            <img src="img/reporte.png" alt="" style="width: 35px;">
+            <img src="img/comentario.png" alt="" style="width: 35px;">
             <span><strong>Comentarios</strong></span>
         </a>
     </li>

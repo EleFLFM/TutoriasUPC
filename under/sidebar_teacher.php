@@ -22,7 +22,7 @@
             <hr class="sidebar-divider">
 <li class="nav-item active">
         <a class="nav-link" href="page_logs_teacher.php">
-            <img src="img/casa.png" alt="" style="width: 35px;">
+            <img src="img/reporte.png" alt="" style="width: 35px;">
             <span>Registro</span></a>
     </li>
           

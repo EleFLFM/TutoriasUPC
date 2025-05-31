@@ -1,12 +1,12 @@
 <?php
 include "../conexion.php";
 
-// Obtener lista de docentes
-$docentes = mysqli_query($conn, "
-    SELECT u.id, u.nombre 
-    FROM usuarios u 
-    INNER JOIN cargos c ON u.idcargo = c.id 
-    WHERE c.nombre = 'Docente'
+// Obtener lista de cursos con comentarios
+$cursos = mysqli_query($conn, "
+    SELECT DISTINCT c.code, c.descripcion AS nombre_curso
+    FROM comentarios_cursos cc
+    INNER JOIN courses c ON cc.course_code = c.code
+    ORDER BY c.descripcion
 ");
 ?>
 
@@ -20,7 +20,7 @@ $docentes = mysqli_query($conn, "
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Comentarios a Docentes</title>
+    <title>Comentarios de Cursos</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,92 +55,51 @@ $docentes = mysqli_query($conn, "
                 <!-- Begin Page Content -->
                 <div class="container-fluid mt-4">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Comentarios de estudiantes</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Comentarios de estudiantes por curso</h1>
                     </div>
 
                     <div class="row">
-                        <?php while ($docente = mysqli_fetch_assoc($docentes)): ?>
+                        <?php while ($curso = mysqli_fetch_assoc($cursos)): ?>
                         <div class="col-lg-12 mb-4">
                             <div class="card shadow">
                                 <div class="card-header py-3" style="background-color:#198754;">
                                     <h6 class="m-0 font-weight-bold text-white">
-                                        <i class="fas fa-chalkboard-teacher mr-2"></i>
-                                        Docente: <?= htmlspecialchars($docente['nombre']) ?>
+                                        <i class="fas fa-book mr-2"></i>
+                                        Curso: <?= htmlspecialchars($curso['nombre_curso']) ?>
                                     </h6>
                                 </div>
                                 
                                 <div class="card-body">
-                                    <?php 
-                                    $cursos = mysqli_query($conn, "
-                                        SELECT DISTINCT c.code, c.descripcion AS nombre
-                                        FROM comentarios_docentes cd
-                                        INNER JOIN courses c ON cd.course_code = c.code
-                                        WHERE cd.docente_id = {$docente['id']}
-                                    ");
-                                    
-                                    while ($curso = mysqli_fetch_assoc($cursos)): 
-                                        $promedio_result = mysqli_query($conn, "
-                                            SELECT AVG(calificacion) AS promedio
-                                            FROM comentarios_docentes
-                                            WHERE docente_id = {$docente['id']} AND course_code = '{$curso['code']}'
-                                        ");
-                                        $promedio = mysqli_fetch_assoc($promedio_result)['promedio'];
-                                    ?>
-                                    <div class="mb-4">
-                                        <button class="btn btn-light btn-block text-left d-flex justify-content-between align-items-center" 
-                                                type="button" data-toggle="collapse"
-                                                data-target="#curso<?= $docente['id'] ?>_<?= $curso['code'] ?>">
-                                            <span>
-                                                <i class="fas fa-book mr-2"></i>
-                                                <?= htmlspecialchars($curso['nombre']) ?>
-                                            </span>
-                                            <span class="badge badge-primary">
-                                                Promedio: <?= number_format($promedio, 2) ?>/5
-                                            </span>
-                                        </button>
-
-                                        <div class="collapse mt-3" id="curso<?= $docente['id'] ?>_<?= $curso['code'] ?>">
-                                            <div class="table-responsive">
-                                              <!-- Dentro del while que muestra los comentarios, cambia la estructura de la tabla así: -->
-<table class="table table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th width="40%">Comentario</th>
-            <th>Estudiante</th>
-            <th class="w-25">Calificación</th>
-            <th>Fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
-        $comentarios = mysqli_query($conn, "
-            SELECT cd.*, c.nombre AS nombre_curso, u.nombre AS estudiante
-            FROM comentarios_docentes cd
-            INNER JOIN courses c ON cd.course_code = c.code
-            INNER JOIN usuarios u ON cd.usuario_id = u.id
-            WHERE cd.docente_id = {$docente['id']} AND cd.course_code = '{$curso['code']}'
-            ORDER BY cd.fecha_creacion DESC
-        ");
-        
-        while ($comentario = mysqli_fetch_assoc($comentarios)): 
-        ?>
-        <tr>
-            <td><?= htmlspecialchars($comentario['comentario']) ?></td>
-            <td><?= htmlspecialchars($comentario['estudiante']) ?></td>
-            <td>
-                <span class="badge badge-<?= $comentario['calificacion'] >= 3 ? 'success' : 'warning' ?>">
-                    <?= $comentario['calificacion'] ?>/5
-                </span>
-            </td>
-            <td><?= date('d/m/Y', strtotime($comentario['fecha_creacion'])) ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
-                                            </div>
-                                        </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th width="40%">Comentario</th>
+                                                    <th>Estudiante</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                $comentarios = mysqli_query($conn, "
+                                                    SELECT cc.*, u.nombre AS estudiante
+                                                    FROM comentarios_cursos cc
+                                                    INNER JOIN usuarios u ON cc.usuario_id = u.id
+                                                    WHERE cc.course_code = '{$curso['code']}'
+                                                    ORDER BY cc.fecha_creacion DESC
+                                                ");
+                                                
+                                                while ($comentario = mysqli_fetch_assoc($comentarios)): 
+                                                ?>
+                                                <tr>
+                                                    <td><?= nl2br(htmlspecialchars($comentario['comentario'])) ?></td>
+                                                    <td><?= htmlspecialchars($comentario['estudiante']) ?></td>
+                                                    <td><?= date('d/m/Y H:i', strtotime($comentario['fecha_creacion'])) ?></td>
+                                                </tr>
+                                                <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <?php endwhile; ?>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +151,7 @@ $docentes = mysqli_query($conn, "
                 "pageLength": 5,
                 "lengthChange": false,
                 "searching": true,
-                "order": [[2, 'desc']]
+                "order": [[2, 'desc']] // Ordenar por fecha descendente
             });
         });
     </script>
