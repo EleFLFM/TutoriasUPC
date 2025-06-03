@@ -135,7 +135,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 </a>
 
 <a href="https://www.youtube.com/watch?v=JCIpAbNXiYk" 
-   target="" 
+   target="_blank" 
    class="list-group-item list-group-item-action video-link"
    data-video-id="JCIpAbNXiYk"
    data-course-code="<?= $code ?>">
@@ -152,6 +152,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 
 <a href="https://www.youtube.com/watch?v=v4OvY0eiZjQ" 
 class="list-group-item list-group-item-action"
+target="_blank"
   data-video-id="v4OvY0eiZjQ"
   data-course-code="<?= $code ?>">
   <div class="d-flex w-100 justify-content-between">

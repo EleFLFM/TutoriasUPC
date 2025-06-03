@@ -1,7 +1,16 @@
 
 {
+    "Cálculo 1": "calculo_1.php",
+    "Cálculo 2": "calculo_2.php",
+    "Cálculo 3": "calculo_3.php",
+    "Calculo 1": "calculo_1.php",
     "Calculo 2": "calculo_2.php",
+    "Calculo 3": "calculo_3.php",
     "Programacion 1": "programacion_1.php",
     "Programacion 2": "programacion_2.php",
+    "Programacion 3": "programacion_3.php",
+    "Programación 1": "programacion_1.php",
+    "Programación 2": "programacion_2.php",
+    "Programación 3": "programacion_3.php",
     "Fundamentos de programación": "fundamentos_progra.php"
 }

@@ -34,10 +34,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="show_cursos.php">Matriculados</a>
                         <a class="collapse-item" href="all_courses.php">Todos los cursos</a>
-                        <!-- <h6 class="collapse-header">TODOS LOS CURSOS: </h6>
-                        <a class="collapse-item" href="calculo.php">Cálculo</a>
-                        <a class="collapse-item" href="programacion.php">Programación</a>
-                        <a class="collapse-item" href="fisica.php">Física</a> -->
+                    
                     </div>
                 </div>
             </li> 

@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
     }
     
     // Redirigir para evitar reenvío del formulario
-    header("Location: fundamentos_progra.php?code=$code");
+    header("Location: programacion_3.php?code=$code");
     exit();
 }
 
@@ -66,10 +66,10 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Tutorías UPC - Fundamentos de Programación">
+    <meta name="description" content="Tutorías UPC - Programación 3">
     <meta name="author" content="">
 
-    <title>Fundamentos de Programación | Tutorias UPC</title>
+    <title>Programación 3 | Tutorias UPC</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -106,7 +106,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                     <div class="col-lg-9">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Fundamentos de Programación!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Programación 3!</h1>
                                 <div class="copyright text-center my-auto">
                                     <span> 
                                         Aquí encontrarás todos los elementos y temas de las clases. ¡Aprende y diviértete!
@@ -115,119 +115,179 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                             </div>
                             <br>
 <!-- Start unitys -->
-<!-- Primer Corte -->
+<!-- Unidad 1 -->
 <div class="card shadow mb-4">
-    <a href="#collapseFirstCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseFirstCut">
+    <a href="#collapseUnidad1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseUnidad1">
         <h6 class="m-0 font-weight-bold text-primary">
-            <i class="fas fa-code mr-2"></i>Primer Corte - Fundamentos de Programación
+            <i class="fas fa-terminal mr-2"></i>Unidad 1 - Elementos del Lenguaje
         </h6>
     </a>
-    <div class="collapse show" id="collapseFirstCut">
+    <div class="collapse show" id="collapseUnidad1">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=8PopR3x-VMY" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Evolución histórica de la programación</h5>
-                    <p class="mb-1">De los primeros lenguajes hasta la programación estructurada. <span class="badge badge-primary">Video</span></p>
-                </a>
-                <a href="https://www.youtube.com/watch?v=K2q3o3pwwvM" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Algoritmos, programas y lenguajes</h5>
-                    <p class="mb-1">Conceptos básicos para empezar a programar. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Elementos del Lenguaje C#</h5>
+                    <p class="mb-1">Sintaxis, tipos de datos, estructuras de control, operadores.</p>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Segundo Corte -->
+<!-- Unidad 2 -->
 <div class="card shadow mb-4">
-    <a href="#collapseSecondCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseSecondCut">
+    <a href="#collapseUnidad2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseUnidad2">
         <h6 class="m-0 font-weight-bold text-success">
-            <i class="fas fa-cogs mr-2"></i>Segundo Corte - Tipos de Datos y Expresiones
+            <i class="fas fa-cogs mr-2"></i>Unidad 2 - Aplicaciones de Consola
         </h6>
     </a>
-    <div class="collapse" id="collapseSecondCut">
+    <div class="collapse" id="collapseUnidad2">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=wfcWRAxRVBA" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Tipos de datos y variables</h5>
-                    <p class="mb-1">Enteros, reales, booleanos, caracteres y cadenas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Repaso POO</h5>
+                    <p class="mb-1">Programación Orientada a Objetos: clases, objetos, herencia, etc.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=cIo7aIGZBzM" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Operadores y expresiones</h5>
-                    <p class="mb-1">Aritméticos, relacionales, lógicos y acción de asignación. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Clases, Enumeraciones e Interfaces</h5>
+                    <p class="mb-1">Definición de tipos personalizados y contratos.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=qz8aQGrU54A" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">3. Sentencias y acciones básicas</h5>
-                    <p class="mb-1">Construcción de expresiones y sentencias simples. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Archivos de Texto</h5>
+                    <p class="mb-1">Lectura y escritura en archivos externos.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Manejo de Cadenas</h5>
+                    <p class="mb-1">Manipulación de strings en C#.</p>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Tercer Corte -->
+<!-- Unidad 3 -->
 <div class="card shadow mb-4">
-    <a href="#collapseThirdCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseThirdCut">
+    <a href="#collapseUnidad3" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseUnidad3">
         <h6 class="m-0 font-weight-bold text-warning">
-            <i class="fas fa-random mr-2"></i>Tercer Corte - Condicionales y Ciclos
+            <i class="fas fa-desktop mr-2"></i>Unidad 3 - Aplicaciones con GUI
         </h6>
     </a>
-    <div class="collapse" id="collapseThirdCut">
+    <div class="collapse" id="collapseUnidad3">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=MFk7Kz9-7nY" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Estructuras condicionales</h5>
-                    <p class="mb-1">Condición simple, doble y múltiples condiciones anidadas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. BCL Objetos Comunes</h5>
+                    <p class="mb-1">Uso de la Base Class Library en C#.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=x7X9w_GIm1s" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Ciclos con while y for</h5>
-                    <p class="mb-1">Repetición de instrucciones con control de flujo. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Objetos Contenedores</h5>
+                    <p class="mb-1">Paneles, formularios, grupos.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=Cr5vd6cE3pA" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">3. Contadores y acumuladores</h5>
-                    <p class="mb-1">Cómo contar y acumular valores en estructuras repetitivas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Menús y Barras de Herramientas</h5>
+                    <p class="mb-1">Diseño de menús desplegables y toolbars.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Controles Dinámicos</h5>
+                    <p class="mb-1">Creación y manipulación en tiempo de ejecución.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">5. Librerías de Objetos Dinámicos</h5>
+                    <p class="mb-1">Uso y creación de bibliotecas reutilizables.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">6. Interfaces SDI y MDI</h5>
+                    <p class="mb-1">Diseño de interfaces de documento único y múltiple.</p>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Recursos Adicionales -->
+<!-- Unidad 4 -->
 <div class="card shadow mb-4">
-    <a href="#collapseResources" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseResources">
-        <h6 class="m-0 font-weight-bold text-info">
-            <i class="fas fa-book mr-2"></i>Recursos Adicionales
+    <a href="#collapseUnidad4" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseUnidad4">
+        <h6 class="m-0 font-weight-bold text-danger">
+            <i class="fas fa-database mr-2"></i>Unidad 4 - Acceso Desconectado a Datos
         </h6>
     </a>
-    <div class="collapse" id="collapseResources">
+    <div class="collapse" id="collapseUnidad4">
         <div class="card-body">
             <div class="list-group">
-
-                <a href="https://aprendepython.es/_downloads/907b5202c1466977a8d6bd3a2641453f/aprendepython.pdf" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Aprende Python - S. Delgado Quintero (2022)</h5>
-                    <p class="mb-1">Material completo sobre fundamentos de Python. <span class="badge badge-info">PDF</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. MDI y Acceso Desconectado</h5>
+                    <p class="mb-1">Acceso a datos sin conexión y uso de formularios MDI.</p>
                 </a>
-
-                <a href="https://editorialeidec.com/libros/algoritmos-python" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Algoritmos resueltos con Python - Condor Tinoco & De la Cruz Rocca (2020)</h5>
-                    <p class="mb-1">Ejercicios resueltos paso a paso. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Caché de Datos</h5>
+                    <p class="mb-1">Gestión y almacenamiento temporal de datos.</p>
                 </a>
-
-                <a href="https://www.uaa.mx/algoritmos-flujo" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Algoritmos con diagramas de flujo - Pinales & Velázquez (2014)</h5>
-                    <p class="mb-1">Fundamentos con pseudocódigo y diagramas. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. DataSet, DataColumn y DataRow</h5>
+                    <p class="mb-1">Manipulación de estructuras de datos en memoria.</p>
                 </a>
-
-                <a href="https://www.escuelaing.edu.co/" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Aprendiendo a programar desde cero - Patricia Salazar (2019)</h5>
-                    <p class="mb-1">Guía de inicio para nuevos programadores. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. DataGridView y Binding</h5>
+                    <p class="mb-1">Visualización y vinculación de datos a la interfaz.</p>
                 </a>
-
             </div>
         </div>
     </div>
 </div>
 
+<!-- Unidad 5 -->
+<div class="card shadow mb-4">
+    <a href="#collapseUnidad5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseUnidad5">
+        <h6 class="m-0 font-weight-bold text-info">
+            <i class="fas fa-tasks mr-2"></i>Unidad 5 - Aplicaciones con Hilos
+        </h6>
+    </a>
+    <div class="collapse" id="collapseUnidad5">
+        <div class="card-body">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Thread</h5>
+                    <p class="mb-1">Uso de hilos en programación multihilo.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Async y Await</h5>
+                    <p class="mb-1">Programación asíncrona en C# con tareas.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Referencias Bibliográficas -->
+<div class="card shadow mb-4">
+    <a href="#collapseReferencias" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseReferencias">
+        <h6 class="m-0 font-weight-bold text-secondary">
+            <i class="fas fa-book mr-2"></i>Referencias Bibliográficas
+        </h6>
+    </a>
+    <div class="collapse" id="collapseReferencias">
+        <div class="card-body">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Microsoft C#: Lenguaje y Aplicaciones</h5>
+                    <p class="mb-1">Ceballos Sierra, Francisco Javier. 2ª ed. RA-MA Editorial, 2007. ProQuest ebrary.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Enciclopedia de Microsoft Visual C#</h5>
+                    <p class="mb-1">Ceballos Sierra, Francisco Javier. 4ª ed. RA-MA Editorial, 2012. ProQuest ebrary.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Introducción a .NET</h5>
+                    <p class="mb-1">Editorial UOC, 2010. ProQuest ebrary.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Visual Basic: Interfaces Gráficas y Aplicaciones para Internet</h5>
+                    <p class="mb-1">Ceballos Sierra, Francisco Javier. RA-MA Editorial, 2012. ProQuest ebrary.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- End -->
  <!-- Sección de Comentarios -->
@@ -246,7 +306,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                                         <div class="alert alert-danger"><?= $mensaje_error ?></div>
                                     <?php endif; ?>
                                     
-                                    <form method="POST" action="fundamentos_progra.php?code=<?= $code ?>">
+                                    <form method="POST" action="programacion_3.php?code=<?= $code ?>">
                                         <div class="form-group">
                                             <label for="comentario" class="font-weight-bold">Tu comentario:</label>
                                              <textarea class="form-control" id="comentario" name="comentario"

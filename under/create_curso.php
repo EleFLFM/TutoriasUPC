@@ -95,7 +95,7 @@
     <br>
 
     <hr>
-    <a href="index_docente.php" class="btn btn-secondary btn-icon-split">
+    <a href="index_admin.php" class="btn btn-secondary btn-icon-split">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-left"></i>
         </span>

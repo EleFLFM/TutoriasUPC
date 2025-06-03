@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
     }
     
     // Redirigir para evitar reenvío del formulario
-    header("Location: calculo_2.php?code=$code");
+    header("Location: programacion_1.php?code=$code");
     exit();
 }
 
@@ -69,7 +69,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
     <meta name="description" content="Tutorías UPC - Programación 2">
     <meta name="author" content="">
 
-    <title>Programación 2 | Tutorias UPC</title>
+    <title>Programación 1 | Tutorias UPC</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -106,7 +106,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                     <div class="col-lg-9">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Programación 2!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Programación 1!</h1>
                                 <div class="copyright text-center my-auto">
                                     <span> 
                                         Aquí encontrarás todos los elementos y temas de las clases. ¡Aprende y diviértete!
@@ -356,7 +356,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                                         <div class="alert alert-danger"><?= $mensaje_error ?></div>
                                     <?php endif; ?>
                                     
-                                    <form method="POST" action="calculo_2.php?code=<?= $code ?>">
+                                    <form method="POST" action="programacion_1.php?code=<?= $code ?>">
                                         <div class="form-group">
                                             <label for="comentario" class="font-weight-bold">Tu comentario:</label>
                                              <textarea class="form-control" id="comentario" name="comentario"

@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
     }
     
     // Redirigir para evitar reenvío del formulario
-    header("Location: fundamentos_progra.php?code=$code");
+    header("Location: calculo_1.php?code=$code");
     exit();
 }
 
@@ -66,10 +66,10 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Tutorías UPC - Fundamentos de Programación">
+    <meta name="description" content="Tutorías UPC - Cálculo 1">
     <meta name="author" content="">
 
-    <title>Fundamentos de Programación | Tutorias UPC</title>
+    <title>Cálculo 1 | Tutorias UPC</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -106,7 +106,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                     <div class="col-lg-9">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Fundamentos de Programación!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Cálculo 1!</h1>
                                 <div class="copyright text-center my-auto">
                                     <span> 
                                         Aquí encontrarás todos los elementos y temas de las clases. ¡Aprende y diviértete!
@@ -119,19 +119,27 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 <div class="card shadow mb-4">
     <a href="#collapseFirstCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseFirstCut">
         <h6 class="m-0 font-weight-bold text-primary">
-            <i class="fas fa-code mr-2"></i>Primer Corte - Fundamentos de Programación
+            <i class="fas fa-square-root-alt mr-2"></i>Primer Corte - Conjuntos Numéricos y Álgebra Básica
         </h6>
     </a>
     <div class="collapse show" id="collapseFirstCut">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=8PopR3x-VMY" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Evolución histórica de la programación</h5>
-                    <p class="mb-1">De los primeros lenguajes hasta la programación estructurada. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Conjuntos Numéricos</h5>
+                    <p class="mb-1">Clasificación y propiedades básicas.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=K2q3o3pwwvM" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Algoritmos, programas y lenguajes</h5>
-                    <p class="mb-1">Conceptos básicos para empezar a programar. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Álgebra Básica</h5>
+                    <p class="mb-1">Potenciación, radicación, logaritmación y operaciones algebraicas.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Factorización y productos notables</h5>
+                    <p class="mb-1">Técnicas comunes y división sintética.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Inecuaciones e identidades trigonométricas</h5>
+                    <p class="mb-1">Aplicaciones y simplificación.</p>
                 </a>
             </div>
         </div>
@@ -142,23 +150,27 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 <div class="card shadow mb-4">
     <a href="#collapseSecondCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseSecondCut">
         <h6 class="m-0 font-weight-bold text-success">
-            <i class="fas fa-cogs mr-2"></i>Segundo Corte - Tipos de Datos y Expresiones
+            <i class="fas fa-chart-line mr-2"></i>Segundo Corte - Funciones, Límites y Continuidad
         </h6>
     </a>
     <div class="collapse" id="collapseSecondCut">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=wfcWRAxRVBA" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Tipos de datos y variables</h5>
-                    <p class="mb-1">Enteros, reales, booleanos, caracteres y cadenas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Funciones reales y sus gráficas</h5>
+                    <p class="mb-1">Dominio, rango y operaciones con funciones.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=cIo7aIGZBzM" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Operadores y expresiones</h5>
-                    <p class="mb-1">Aritméticos, relacionales, lógicos y acción de asignación. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Composición de funciones</h5>
+                    <p class="mb-1">Teoría y ejemplos aplicados.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=qz8aQGrU54A" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">3. Sentencias y acciones básicas</h5>
-                    <p class="mb-1">Construcción de expresiones y sentencias simples. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Introducción a los límites</h5>
+                    <p class="mb-1">Teoremas, continuidad, y límites laterales.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Técnicas para límites indeterminados</h5>
+                    <p class="mb-1">Límites infinitos, trigonométricos y aplicaciones prácticas.</p>
                 </a>
             </div>
         </div>
@@ -169,23 +181,27 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 <div class="card shadow mb-4">
     <a href="#collapseThirdCut" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseThirdCut">
         <h6 class="m-0 font-weight-bold text-warning">
-            <i class="fas fa-random mr-2"></i>Tercer Corte - Condicionales y Ciclos
+            <i class="fas fa-pen-ruler mr-2"></i>Tercer Corte - Derivadas y Aplicaciones
         </h6>
     </a>
     <div class="collapse" id="collapseThirdCut">
         <div class="card-body">
             <div class="list-group">
-                <a href="https://www.youtube.com/watch?v=MFk7Kz9-7nY" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">1. Estructuras condicionales</h5>
-                    <p class="mb-1">Condición simple, doble y múltiples condiciones anidadas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">1. Concepto y reglas de derivación</h5>
+                    <p class="mb-1">Regla de la cadena, derivadas trigonométricas y logarítmicas.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=x7X9w_GIm1s" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">2. Ciclos con while y for</h5>
-                    <p class="mb-1">Repetición de instrucciones con control de flujo. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">2. Derivadas implícitas y de orden superior</h5>
+                    <p class="mb-1">Aplicaciones geométricas y analíticas.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=Cr5vd6cE3pA" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">3. Contadores y acumuladores</h5>
-                    <p class="mb-1">Cómo contar y acumular valores en estructuras repetitivas. <span class="badge badge-primary">Video</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">3. Aplicaciones de la derivada</h5>
+                    <p class="mb-1">Máximos y mínimos, optimización, análisis de curva.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">4. Regla de l'Hôpital y resolución de problemas</h5>
+                    <p class="mb-1">Formas indeterminadas y su interpretación.</p>
                 </a>
             </div>
         </div>
@@ -196,33 +212,28 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
 <div class="card shadow mb-4">
     <a href="#collapseResources" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseResources">
         <h6 class="m-0 font-weight-bold text-info">
-            <i class="fas fa-book mr-2"></i>Recursos Adicionales
+            <i class="fas fa-book mr-2"></i>Referencias Bibliográficas
         </h6>
     </a>
     <div class="collapse" id="collapseResources">
         <div class="card-body">
             <div class="list-group">
-
-                <a href="https://aprendepython.es/_downloads/907b5202c1466977a8d6bd3a2641453f/aprendepython.pdf" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Aprende Python - S. Delgado Quintero (2022)</h5>
-                    <p class="mb-1">Material completo sobre fundamentos de Python. <span class="badge badge-info">PDF</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">LEITHOLD, Louis</h5>
+                    <p class="mb-1">Matemáticas previas al cálculo, HARLA, 1998.</p>
                 </a>
-
-                <a href="https://editorialeidec.com/libros/algoritmos-python" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Algoritmos resueltos con Python - Condor Tinoco & De la Cruz Rocca (2020)</h5>
-                    <p class="mb-1">Ejercicios resueltos paso a paso. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">EDWARDS y PENNEY</h5>
+                    <p class="mb-1">Cálculo con geometría analítica, Prentice Hall, 2002.</p>
                 </a>
-
-                <a href="https://www.uaa.mx/algoritmos-flujo" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Algoritmos con diagramas de flujo - Pinales & Velázquez (2014)</h5>
-                    <p class="mb-1">Fundamentos con pseudocódigo y diagramas. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">ZILL, D. y otros</h5>
+                    <p class="mb-1">Álgebra y Trigonometría, McGraw Hill, 1999.</p>
                 </a>
-
-                <a href="https://www.escuelaing.edu.co/" class="list-group-item list-group-item-action" target="_blank">
-                    <h5 class="mb-1">Aprendiendo a programar desde cero - Patricia Salazar (2019)</h5>
-                    <p class="mb-1">Guía de inicio para nuevos programadores. <span class="badge badge-info">Libro</span></p>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">T. APOSTOL</h5>
+                    <p class="mb-1">Cálculo, Tomo I, Editorial Reverté, 1988.</p>
                 </a>
-
             </div>
         </div>
     </div>
@@ -246,7 +257,7 @@ unset($_SESSION['comentario_exito'], $_SESSION['comentario_error']);
                                         <div class="alert alert-danger"><?= $mensaje_error ?></div>
                                     <?php endif; ?>
                                     
-                                    <form method="POST" action="fundamentos_progra.php?code=<?= $code ?>">
+                                    <form method="POST" action="calculo_1.php?code=<?= $code ?>">
                                         <div class="form-group">
                                             <label for="comentario" class="font-weight-bold">Tu comentario:</label>
                                              <textarea class="form-control" id="comentario" name="comentario"
