@@ -61,8 +61,14 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="page_registro.php">
-            <img src="img/reporte.png" alt="" style="width: 35px;">
+            <img src="img/ic_registro.png" alt="" style="width: 35px;">
             <span><strong>Registro(logs)</strong></span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="dashboard.php">
+            <img src="img/reporte.png" alt="" style="width: 35px;">
+            <span><strong>Dashboard</strong></span>       
         </a>
     </li>
     
